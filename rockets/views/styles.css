@@ -1,0 +1,11 @@
+.row{
+    /* background-color: darkgoldenrod; */
+    height: 100vh;
+}
+.col-3{
+    /* background-color: darkgreen; */
+    text-align: center;
+}
+h1{
+    margin-top: 3rem;
+}
