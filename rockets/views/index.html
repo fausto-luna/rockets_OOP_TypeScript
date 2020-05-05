@@ -9,24 +9,59 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-6" id="col1">
-                <h1>Rocket 1</h1>
-               <p id="rocket1"></p>
-               <button class="btn btn-dark" onclick="createRocket1()">Create Rocket 1</button>
-               <button class="btn btn-dark" onclick="accelerateRocket1()">accelerateRocket1</button>
-               <button class="btn btn-dark" onclick="decelerateRocket1()">decelerateRocket1</button>
-               <button class="btn btn-dark" onclick="printRocket1()">printRocket1</button>
+        <div class="row" id="header">
+            <div class="col-3">
+                
             </div>
-            <div class="col-6" id="col2">
+            <div class="col-9">
+
+            </div>
+        </div>
+
+        <div class="row" id="row2">
+            <div class="col-4">
+                <h1>Rocket 1</h1>
+                <p id="rocket1"></p>
+            </div>
+            <div class="col-4">
+                <p id="allRockets"></p>
+            </div>
+            <div class="col-4">
                 <h1>Rocket 2</h1>
                 <p id="rocket2"></p>
-                <button class="btn btn-dark" onclick="createRocket2()">createRocket2</button>
-                <button class="btn btn-dark" onclick="accelerateRocket2()">accelerateRocket2</button>
-                <button class="btn btn-dark" onclick="decelerateRocket2()">decelerateRocket2</button>
-                <button class="btn btn-dark" onclick="printRocket2()">printRocket2</button>
-                <button class="btn btn-dark" onclick="printAllRockets()">printAllRockets</button>
             </div>
+        </div>
+
+        </div>
+        <div class="row" id="rowButtons">
+            <div class="col-4" id="col1">
+                
+               <div class="row">
+                <button class="col-9 btn btn-outline-warning btn-block" onclick="createRocket1()">Create Rocket</button>
+               </div>
+               <div class="row">
+                <button class="col-4 btn btn-outline-success" onclick="accelerateRocket1()">Accelerate</button>
+                <button class="col-4 btn btn-outline-danger" onclick="decelerateRocket1()">Decelerate</button>
+               </div>
+               <div class="row">
+                <button class="col-9 btn btn-outline-info " onclick="printRocket1()">Rocket Info</button>
+               </div>
+            </div>
+            <div class="col-4">
+                
+                <button class="col-9 btn btn-outline-info" id="btnPrintAllRockets" onclick="printAllRockets()">All Rockets Info</button>
+            </div>
+            <div class="col-4" id="col2">
+                <div class="row">
+                <button class="col-9 btn btn-outline-warning" onclick="createRocket2()">Create Rocket</button>
+                </div>
+                <div class="row">
+                    <button class="col-4 btn btn-outline-success" onclick="accelerateRocket2()">Accelerate</button>
+                    <button class="col-4 btn btn-outline-danger" onclick="decelerateRocket2()">Decelerate</button>
+                </div>
+                <div class="row">
+                    <button class="col-9 btn btn-outline-info" onclick="printRocket2()">Rocket Info</button>
+                </div>
         </div>
     </div>
 <!-- ------------------ BOOTSTRAP ------------------ -->
