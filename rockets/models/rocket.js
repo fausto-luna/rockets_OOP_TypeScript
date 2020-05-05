@@ -1,12 +1,8 @@
 var Rocket = /** @class */ (function () {
     function Rocket(code) {
         this.thrusters = new Array();
-        this.rockets = new Array();
         this.code = code;
     }
-    Rocket.prototype.addRocket = function (rocket) {
-        this.rockets.push(rocket);
-    };
     Rocket.prototype.addThruster = function (thruster) {
         this.thrusters.push(thruster);
     };
@@ -19,10 +15,7 @@ var Rocket = /** @class */ (function () {
         var i, newSpeed = 0;
         for (i = 0; i < this.thrusters.length; i++) {
             this.thrusters[i].power += 10;
-            // accelerate = this.thrusters[i].speedUp();
-            console.log("thruster " + (i + 1) + ": power " + this.thrusters[i].power);
             newSpeed += this.thrusters[i].power;
-            console.log("newSpeed = " + newSpeed);
         }
         return newSpeed;
     };
@@ -30,9 +23,7 @@ var Rocket = /** @class */ (function () {
         var i, newSpeed = 0;
         for (i = 0; i < this.thrusters.length; i++) {
             this.thrusters[i].power -= 10;
-            console.log("thruster " + (i + 1) + ": power " + this.thrusters[i].power);
             newSpeed += this.thrusters[i].power;
-            console.log("newSpeed = " + newSpeed);
         }
         return newSpeed;
     };
