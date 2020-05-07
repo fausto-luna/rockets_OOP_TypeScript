@@ -9,29 +9,33 @@ class Rocket{
     }
     thrustersPower():string {
         return this.thrusters.map(function(elem){
-            return elem.power;
+            return elem.maxPower;
         }).join(", ");
     }
     accelerate():number{
         var i:number, newSpeed:number = 0;
         for (i = 0; i < this.thrusters.length; i++){
-            this.thrusters[i].power += 10;
-            newSpeed += this.thrusters[i].power;
+            if (this.thrusters[i].currentPower < this.thrusters[i].maxPower){
+                this.thrusters[i].currentPower += 10;
+                newSpeed += this.thrusters[i].currentPower;
+            }
         }
         return newSpeed;
     }
     decelerate():number{
         var i:number, newSpeed:number = 0;
         for (i = 0; i < this.thrusters.length; i++){
-            this.thrusters[i].power -= 10;
-            newSpeed += this.thrusters[i].power;
+            if (this.thrusters[i].currentPower > 0){
+                this.thrusters[i].currentPower -= 10;
+                newSpeed += this.thrusters[i].currentPower;
+            }
         }
         return newSpeed;
     }
     currentSpeed():number{
         var i:number, currentSpeed:number = 0;
         for (i = 0; i < this.thrusters.length; i++){
-             currentSpeed += this.thrusters[i].power;
+             currentSpeed += this.thrusters[i].currentPower;
         }
         return currentSpeed;
     }

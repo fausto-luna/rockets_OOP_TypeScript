@@ -1,7 +1,9 @@
 class Thruster{
-    public power:number;
+    public currentPower:number;
+    public maxPower:number;
 
-    constructor(power:number){
-        this.power = power;
+    constructor(currentPower:number, maxPower:number){
+        this.currentPower = currentPower;
+        this.maxPower = maxPower;
     }
 }
