@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a962704da9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Rockets</title>
 </head>
@@ -32,42 +33,55 @@
             </div>
         </div>
 
-        </div>
+        
         <div class="row" id="rowButtons">
             <div class="col-4" id="col1">
                 
                <div class="row">
-                <button class="col-9 btn btn-outline-warning btn-block" onclick="createRocket1()">Create Rocket</button>
+                <button class="col-9 btn btn-outline-info btn-block" onclick="createRocket1()">Create Rocket</button>
                </div>
                <div class="row">
                 <button class="col-4 btn btn-outline-success" onclick="accelerateRocket1()">Accelerate</button>
                 <button class="col-4 btn btn-outline-danger" onclick="decelerateRocket1()">Decelerate</button>
                </div>
                <div class="row">
-                <button class="col-9 btn btn-outline-info " onclick="printRocket1()">Rocket Info</button>
+                <button class="col-9 btn btn-outline-warning " onclick="printRocket1()">Rocket Info</button>
                </div>
             </div>
             <div class="col-4">
                 
-                <button class="col-9 btn btn-outline-info" id="btnPrintAllRockets" onclick="printAllRockets()">All Rockets Info</button>
+                <button class="col-9 btn btn-warning" id="btnPrintAllRockets" onclick="printAllRockets()">All Rockets Info</button>
             </div>
             <div class="col-4" id="col2">
                 <div class="row">
-                <button class="col-9 btn btn-outline-warning" onclick="createRocket2()">Create Rocket</button>
+                <button class="col-9 btn btn-outline-info" onclick="createRocket2()">Create Rocket</button>
                 </div>
                 <div class="row">
                     <button class="col-4 btn btn-outline-success" onclick="accelerateRocket2()">Accelerate</button>
                     <button class="col-4 btn btn-outline-danger" onclick="decelerateRocket2()">Decelerate</button>
                 </div>
                 <div class="row">
-                    <button class="col-9 btn btn-outline-info" onclick="printRocket2()">Rocket Info</button>
+                    <button class="col-9 btn btn-outline-warning" onclick="printRocket2()">Rocket Info</button>
                 </div>
+            </div>
         </div>
+        <footer class="row">
+            <i class="fab fa-galactic-republic" data-toggle="modal" data-target=".bd-example-modal-sm"></i>
+            <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <i class="fab fa-galactic-republic"></i>
+                     <p>'Rockets' is an object-oriented programming (OOP) exercise built with HTML5, CSS, Bootstrap and TypeScript (ES6) for the Front End Programme @ IT Academy [Cybernarium | Barcelona Activa].</p>
+                     <p id="modalFooter">Fausto Luna. Barcelona, May 2020.</p>
+                  </div>
+                </div>
+            </div>
+        </footer>
     </div>
 <!-- ------------------ BOOTSTRAP ------------------ -->
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <!-- ------------------ SCRIPTS ------------------ -->
 <script src="../controllers/controller.js"></script>
 <script src="../models/rocket.js"></script>

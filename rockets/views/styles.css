@@ -5,8 +5,54 @@ body{
 }
 #header{
     height: 10vh;
-    
 }
+.col-4>p{
+    font-size: 2rem;
+    margin-top: 5rem;
+}
+h1{
+    font-size: 1.5rem;
+}
+footer{
+    width: 100vw;
+    height: 10vh;
+    /* background-color: lightcoral; */
+    justify-content: center;
+    justify-items: center;
+}
+i{
+    align-self: center;
+    margin-top: -3rem;
+    font-size: 4rem;
+}
+i:hover{
+    cursor: pointer;
+    color: #38a3b7;
+}
+.moddal-dialog{
+    background-color: violet;
+}
+.modal-content{
+    background-image: element("fas fa-space-shuttle");
+    background-color: #184090;
+    text-align: justify;
+    padding: 2rem;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: white;
+    font-size: 2rem;
+}
+.modal-content>i{
+   font-size: 5rem;
+   margin: 2rem;
+    color: #f33e2c;
+}
+#modalFooter{
+    font-size: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
 .dot{
     /* color: #184090; */
     margin: 3rem;
@@ -21,11 +67,18 @@ body{
 }
 #row2{
     height: 60vh;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
     /* background-color: tomato; */
 }
+#row2:hover {
+    overflow: visible;
+    background-color: ;
+  }
 #rowButtons{
     /* background-color: darkgoldenrod;  */
-    height: 30vh;
+    height: 20vh;
     justify-content: space-around;
 }
 .col-4{
