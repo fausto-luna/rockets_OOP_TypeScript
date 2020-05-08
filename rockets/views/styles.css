@@ -106,4 +106,16 @@ button{
 }
 #btnPrintAllRockets{
     margin-top: 3.4rem;
+    text-shadow:
+		-1px -1px 0 #2f2f3c,
+		1px -1px 0 #2f2f3c,
+		-1px 1px 0 #2f2f3c,
+		1px 1px 0 #2f2f3c;
+}
+#allRockets{
+	text-shadow:
+		-1px -1px 0 #282b37,
+		1px -1px 0 #282b37,
+		-1px 1px 0 #282b37,
+		1px 1px 0 #282b37;
 }

@@ -1,135 +1,67 @@
 var rockets = new Array();
-var outputRocket1 = document.getElementById('rocket1');
-var outputRocket2 = document.getElementById('rocket2');
-// ---------------- CREATE ROCKET 1 ---------------- //
-function createRocket1() {
+// ---------------- GLOBAL FUNCTION CREATE ROCKET---------------- //
+function createRocket(rocket, code, thrusters, outputRocket) {
     var i;
     var existent = false;
     for (i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === '32WESSDS') {
+        if (rockets[i].code === code) {
             existent = true;
-            outputRocket1.style.color = '#d43648';
-            outputRocket1.innerHTML = "ALERT!<br>Rocket 32WESSDS already exists. Cannot be created again.";
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " already exists. Cannot be created again.";
             break;
         }
     }
     if (existent === false) {
-        var rocket1 = new Rocket('32WESSDS');
-        rocket1.addThruster(new Thruster(0, 10));
-        rocket1.addThruster(new Thruster(0, 30));
-        rocket1.addThruster(new Thruster(0, 80));
-        rockets.push(rocket1);
-        outputRocket1.style.color = '#38a3b7';
-        outputRocket1.innerHTML = "Rocket " + rocket1.code + " was created.<br><br>";
+        rocket = new Rocket(code);
+        var j;
+        for (j = 0; j < thrusters.length; j++) {
+            rocket.addThruster(thrusters[j]);
+        }
+        rockets.push(rocket);
+        outputRocket.style.color = '#38a3b7';
+        outputRocket.innerHTML = "Rocket " + rocket.code + " was created.<br><br>";
     }
 }
-// ---------------- CREATE ROCKET 2 ---------------- //
-function createRocket2() {
+// ---------------- GLOBAL FUNCTION ACCELERATE ROCKET ---------------- //
+function accelerateRocket(code, outputRocket) {
+    var i = 0;
+    for (i = 0; i < rockets.length; i++) {
+        if (rockets[i].code === code && rockets[i].currentSpeed() < rockets[i].maxPower()) {
+            rockets[i].accelerate();
+            outputRocket.style.color = '#3ea648';
+            outputRocket.innerHTML = "Accelerating rocket " + rockets[i].code + " ...<br><br>";
+            break;
+        }
+        if (rockets[i].code === code && rockets[i].currentSpeed() === rockets[i].maxPower()) {
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot accelerate. It is at maximum power.";
+            break;
+        }
+    }
+}
+// ---------------- GLOBAL FUNCTION DECELLERATE ROCKET ---------------- //
+function decelerateRocket(code, outputRocket) {
     var i;
-    var existent = false;
     for (i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === 'LDSFJA32') {
-            existent = true;
-            outputRocket2.style.color = '#d43648';
-            outputRocket2.innerHTML = "ALERT!<br>Rocket LDSFJA32 already exists. Cannot be created again.";
-            break;
-        }
-    }
-    if (existent === false) {
-        var rocket2 = new Rocket('LDSFJA32');
-        rocket2.addThruster(new Thruster(0, 30));
-        rocket2.addThruster(new Thruster(0, 40));
-        rocket2.addThruster(new Thruster(0, 50));
-        rocket2.addThruster(new Thruster(0, 50));
-        rocket2.addThruster(new Thruster(0, 30));
-        rocket2.addThruster(new Thruster(0, 10));
-        rockets.push(rocket2);
-        outputRocket2.style.color = '#38a3b7';
-        outputRocket2.innerHTML = "Rocket " + rocket2.code + " was created.<br><br>";
-    }
-}
-// ---------------- ACCELERATE ROCKET 1 ---------------- //
-function accelerateRocket1() {
-    var i = 0;
-    for (i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === '32WESSDS' && rockets[i].currentSpeed() < 120) {
-            rockets[i].accelerate();
-            outputRocket1.style.color = '#3ea648';
-            outputRocket1.innerHTML = "Accelerating rocket " + rockets[i].code + " ...<br><br>";
-            break;
-        }
-        if (rockets[i].code === '32WESSDS' && rockets[i].currentSpeed() === 120) {
-            outputRocket1.style.color = '#d43648';
-            outputRocket1.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot accelerate. It is at maximum power.";
-            break;
-        }
-    }
-}
-// ---------------- DECELLERATE ROCKET 1 ---------------- //
-function decelerateRocket1() {
-    var i = 0;
-    for (i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === '32WESSDS' && rockets[i].currentSpeed() > 0) {
+        if (rockets[i].code === code && rockets[i].currentSpeed() > 0) {
             rockets[i].decelerate();
-            outputRocket1.style.color = '#d43648';
-            outputRocket1.innerHTML = "Decelerating rocket " + rockets[i].code + " ...<br><br>";
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = "Decelerating rocket " + rockets[i].code + " ...<br><br>";
             break;
         }
-        if (rockets[i].code === '32WESSDS' && rockets[i].currentSpeed() === 0) {
-            outputRocket1.style.color = '#d43648';
-            outputRocket1.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot decelerate. Its current speed is 0.";
+        if (rockets[i].code === code && rockets[i].currentSpeed() === 0) {
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot decelerate. Its current speed is 0.";
             break;
         }
     }
 }
-// ---------------- PRINT ROCKET 1 ---------------- //
-function printRocket1() {
+// ---------------- GLOBAL FUNCTION PRINT ROCKET ---------------- //
+function printRocket(code, outputRocket) {
     for (var i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === '32WESSDS') {
-            outputRocket1.style.color = '#fac027';
-            outputRocket1.innerHTML = "Rocket " + rockets[i].code + " has " + rockets[i].thrusters.length + " thrusters.<br>\n        Its current speed is " + rockets[i].currentSpeed() + "<br><br>";
-        }
-    }
-}
-// ---------------- ACCELERATE ROCKET 2 ---------------- //
-function accelerateRocket2() {
-    var i = 0;
-    for (i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === 'LDSFJA32' && rockets[i].currentSpeed() < 210) {
-            rockets[i].accelerate();
-            outputRocket2.style.color = '#3ea648';
-            outputRocket2.innerHTML = "Accelerating rocket " + rockets[i].code + " ...<br><br>";
-            break;
-        }
-        if (rockets[i].code === 'LDSFJA32' && rockets[i].currentSpeed() === 210) {
-            outputRocket2.style.color = '#d43648';
-            outputRocket2.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot accelerate. It is at maximum power.";
-            break;
-        }
-    }
-}
-// ---------------- DECELLERATE ROCKET 2 ---------------- //
-function decelerateRocket2() {
-    var i = 0;
-    for (i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === 'LDSFJA32' && rockets[i].currentSpeed() > 0) {
-            rockets[i].decelerate();
-            outputRocket2.style.color = '#d43648';
-            outputRocket2.innerHTML = "Decellerating rocket " + rockets[i].code + " ...<br><br>";
-            break;
-        }
-        if (rockets[i].code === 'LDSFJA32' && rockets[i].currentSpeed() === 0) {
-            outputRocket2.style.color = '#d43648';
-            outputRocket2.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot decelerate. Its current speed is 0.";
-        }
-    }
-}
-// ---------------- PRINT ROCKET 2 ---------------- //
-function printRocket2() {
-    for (var i = 0; i < rockets.length; i++) {
-        if (rockets[i].code === 'LDSFJA32') {
-            outputRocket2.style.color = '#fac027';
-            outputRocket2.innerHTML = "Rocket " + rockets[i].code + " has " + rockets[i].thrusters.length + " thrusters.<br>\n            Its current speed is " + rockets[i].currentSpeed() + "<br><br>";
+        if (rockets[i].code === code) {
+            outputRocket.style.color = '#fac027';
+            outputRocket.innerHTML = "Rocket " + rockets[i].code + " has " + rockets[i].thrusters.length + " thrusters.<br>\n        Its current speed is " + rockets[i].currentSpeed() + "<br><br>";
         }
     }
 }
@@ -138,7 +70,73 @@ function printAllRockets() {
     var outputAllRockets = document.getElementById('allRockets');
     outputAllRockets.innerHTML = '';
     for (var i = 0; i < rockets.length; i++) {
-        outputAllRockets.style.color = '#fac027';
-        outputAllRockets.innerHTML += "Rocket " + rockets[i].code + " has " + rockets[i].thrusters.length + " thrusters.<br>\n        Its current speed is " + rockets[i].currentSpeed() + "<br><br>";
+        outputAllRockets.innerHTML += "Rocket " + rockets[i].code + " has " + rockets[i].thrusters.length + " thrusters. Its current speed is " + rockets[i].currentSpeed() + ".<br><br>";
     }
+}
+// |||||||||||||||||||||||||||||||||||||||||||||||||| //
+// |||||||||||||||||||| ROCKET 1 |||||||||||||||||||| //
+// |||||||||||||||||||||||||||||||||||||||||||||||||| //
+// ---------------- CREATE rocket 1 ---------------- //
+function createRocket1() {
+    var outputRocket1 = document.getElementById('rocket1');
+    var rocket1 = new Rocket('32WESSDS');
+    var code = '32WESSDS';
+    var thruster1 = new Thruster(0, 10);
+    var thruster2 = new Thruster(0, 30);
+    var thruster3 = new Thruster(0, 80);
+    var thrusters = [thruster1, thruster2, thruster3];
+    createRocket(rocket1, code, thrusters, outputRocket1);
+}
+// ---------------- ACCELERATE rocket 1 ---------------- //
+function accelerateRocket1() {
+    var code = '32WESSDS';
+    var outputRocket1 = document.getElementById('rocket1');
+    accelerateRocket(code, outputRocket1);
+}
+// ---------------- DECELLERATE rocket 1 ---------------- //
+function decelerateRocket1() {
+    var code = '32WESSDS';
+    var outputRocket1 = document.getElementById('rocket1');
+    decelerateRocket(code, outputRocket1);
+}
+// ---------------- PRINT rocket 1 ---------------- //
+function printRocket1() {
+    var code = '32WESSDS';
+    var outputRocket1 = document.getElementById('rocket1');
+    printRocket(code, outputRocket1);
+}
+// |||||||||||||||||||||||||||||||||||||||||||||||||| //
+// |||||||||||||||||||| ROCKET 2 |||||||||||||||||||| //
+// |||||||||||||||||||||||||||||||||||||||||||||||||| //
+// ---------------- CREATE rocket 2 ---------------- //
+function createRocket2() {
+    var outputRocket2 = document.getElementById('rocket2');
+    var rocket2 = new Rocket('LDSFJA32');
+    var code = 'LDSFJA32';
+    var thruster1 = new Thruster(0, 30);
+    var thruster2 = new Thruster(0, 40);
+    var thruster3 = new Thruster(0, 50);
+    var thruster4 = new Thruster(0, 50);
+    var thruster5 = new Thruster(0, 30);
+    var thruster6 = new Thruster(0, 10);
+    var thrusters = [thruster1, thruster2, thruster3, thruster4, thruster5, thruster6];
+    createRocket(rocket2, code, thrusters, outputRocket2);
+}
+// ---------------- ACCELERATE rocket 2 ---------------- //
+function accelerateRocket2() {
+    var code = 'LDSFJA32';
+    var outputRocket2 = document.getElementById('rocket2');
+    accelerateRocket(code, outputRocket2);
+}
+// ---------------- DECELLERATE rocket 2 ---------------- //
+function decelerateRocket2() {
+    var code = 'LDSFJA32';
+    var outputRocket2 = document.getElementById('rocket2');
+    decelerateRocket(code, outputRocket2);
+}
+// ---------------- PRINT rocket 2 ---------------- //
+function printRocket2() {
+    var code = 'LDSFJA32';
+    var outputRocket2 = document.getElementById('rocket2');
+    printRocket(code, outputRocket2);
 }

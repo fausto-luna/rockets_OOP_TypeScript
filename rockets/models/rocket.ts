@@ -12,6 +12,20 @@ class Rocket{
             return elem.maxPower;
         }).join(", ");
     }
+    currentSpeed():number{
+        var i:number, currentSpeed:number = 0;
+        for (i = 0; i < this.thrusters.length; i++){
+            currentSpeed += this.thrusters[i].currentPower;
+        }
+        return currentSpeed;
+    }
+    maxPower():number{
+        var i:number, maxPower:number = 0;
+        for (i = 0; i < this.thrusters.length; i++){
+            maxPower += this.thrusters[i].maxPower;
+        }
+        return maxPower;
+    }
     accelerate():number{
         var i:number, newSpeed:number = 0;
         for (i = 0; i < this.thrusters.length; i++){
@@ -32,11 +46,5 @@ class Rocket{
         }
         return newSpeed;
     }
-    currentSpeed():number{
-        var i:number, currentSpeed:number = 0;
-        for (i = 0; i < this.thrusters.length; i++){
-             currentSpeed += this.thrusters[i].currentPower;
-        }
-        return currentSpeed;
-    }
+
 }

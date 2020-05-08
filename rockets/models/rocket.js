@@ -11,6 +11,20 @@ var Rocket = /** @class */ (function () {
             return elem.maxPower;
         }).join(", ");
     };
+    Rocket.prototype.currentSpeed = function () {
+        var i, currentSpeed = 0;
+        for (i = 0; i < this.thrusters.length; i++) {
+            currentSpeed += this.thrusters[i].currentPower;
+        }
+        return currentSpeed;
+    };
+    Rocket.prototype.maxPower = function () {
+        var i, maxPower = 0;
+        for (i = 0; i < this.thrusters.length; i++) {
+            maxPower += this.thrusters[i].maxPower;
+        }
+        return maxPower;
+    };
     Rocket.prototype.accelerate = function () {
         var i, newSpeed = 0;
         for (i = 0; i < this.thrusters.length; i++) {
@@ -30,13 +44,6 @@ var Rocket = /** @class */ (function () {
             }
         }
         return newSpeed;
-    };
-    Rocket.prototype.currentSpeed = function () {
-        var i, currentSpeed = 0;
-        for (i = 0; i < this.thrusters.length; i++) {
-            currentSpeed += this.thrusters[i].currentPower;
-        }
-        return currentSpeed;
     };
     return Rocket;
 }());
