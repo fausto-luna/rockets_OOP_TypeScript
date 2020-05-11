@@ -104,18 +104,21 @@ button{
 .btn-outline-success{
     margin-right: 2.4rem !important;
 }
+#allRockets{
+    text-shadow:
+		-0.5px -0.5px 0 #2f2f3c,
+		0.5px -0.5px 0 #2f2f3c,
+		-0.5px 0.5px 0 #2f2f3c,
+		0.5px 0.5px 0 #2f2f3c;
+}
 #btnPrintAllRockets{
     margin-top: 3.4rem;
-    text-shadow:
+    /* text-shadow:
 		-1px -1px 0 #2f2f3c,
 		1px -1px 0 #2f2f3c,
 		-1px 1px 0 #2f2f3c,
-		1px 1px 0 #2f2f3c;
+		1px 1px 0 #2f2f3c; */
 }
-#allRockets{
-	text-shadow:
-		-1px -1px 0 #282b37,
-		1px -1px 0 #282b37,
-		-1px 1px 0 #282b37,
-		1px 1px 0 #282b37;
+#btnPrintAllRockets:hover{
+    color: white;
 }
