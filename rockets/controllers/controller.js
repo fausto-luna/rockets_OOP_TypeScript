@@ -1,18 +1,15 @@
 var rockets = new Array();
 // ---------------- GLOBAL FUNCTION CREATE ROCKET---------------- //
-function createRocket(button) {
-    var btn = button.id;
-    if (btn === 'create1') {
+function createRocket(code) {
+    if (code === '32WESSDS') {
         var outputRocket1 = document.getElementById('rocket1');
-        var code = '32WESSDS';
         var thruster1 = new Thruster(0, 10);
         var thruster2 = new Thruster(0, 30);
         var thruster3 = new Thruster(0, 80);
         var thrusters = [thruster1, thruster2, thruster3];
         create(code, thrusters);
     }
-    if (btn === 'create2') {
-        var code = 'LDSFJA32';
+    if (code === 'LDSFJA32') {
         var thruster1 = new Thruster(0, 30);
         var thruster2 = new Thruster(0, 40);
         var thruster3 = new Thruster(0, 50);
@@ -48,77 +45,50 @@ function createRocket(button) {
     }
 }
 // ---------------- GLOBAL FUNCTION ACCELERATE ROCKET ---------------- //
-function accelerateRocket(button) {
-    var btn = button.id;
-    if (btn === 'accelerate1') {
-        accelerate('32WESSDS');
-    }
-    if (btn === 'accelerate2') {
-        accelerate('LDSFJA32');
-    }
-    function accelerate(code) {
-        var i;
-        for (i = 0; i < rockets.length; i++) {
-            if (rockets[i].code === code && rockets[i].currentSpeed() < rockets[i].maxPower()) {
-                rockets[i].accelerate();
-                var outputRocket = document.getElementById('rocket' + (i + 1));
-                outputRocket.style.color = '#3ea648';
-                outputRocket.innerHTML = "Accelerating rocket " + rockets[i].code + " ...<br><br>";
-                break;
-            }
-            if (rockets[i].code === code && rockets[i].currentSpeed() === rockets[i].maxPower()) {
-                var outputRocket = document.getElementById('rocket' + (i + 1));
-                outputRocket.style.color = '#d43648';
-                outputRocket.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot accelerate. It is at maximum power.";
-                break;
-            }
+function accelerateRocket(code) {
+    var i;
+    for (i = 0; i < rockets.length; i++) {
+        if (rockets[i].code === code && rockets[i].currentSpeed() < rockets[i].maxPower()) {
+            rockets[i].accelerate();
+            var outputRocket = document.getElementById('rocket' + (i + 1));
+            outputRocket.style.color = '#3ea648';
+            outputRocket.innerHTML = "Accelerating rocket " + rockets[i].code + " ...<br><br>";
+            break;
+        }
+        if (rockets[i].code === code && rockets[i].currentSpeed() === rockets[i].maxPower()) {
+            var outputRocket = document.getElementById('rocket' + (i + 1));
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot accelerate. It is at maximum power.";
+            break;
         }
     }
 }
 // ---------------- GLOBAL FUNCTION DECELLERATE ROCKET ---------------- //
-function decelerateRocket(button) {
-    var btn = button.id;
-    if (btn === 'decelerate1') {
-        decelerate('32WESSDS');
-    }
-    if (btn === 'decelerate2') {
-        decelerate('LDSFJA32');
-    }
-    function decelerate(code) {
-        var i;
-        for (i = 0; i < rockets.length; i++) {
-            if (rockets[i].code === code && rockets[i].currentSpeed() > 0) {
-                rockets[i].decelerate();
-                var outputRocket = document.getElementById('rocket' + (i + 1));
-                outputRocket.style.color = '#d43648';
-                outputRocket.innerHTML = "Decelerating rocket " + rockets[i].code + " ...<br><br>";
-                break;
-            }
-            if (rockets[i].code === code && rockets[i].currentSpeed() === 0) {
-                var outputRocket = document.getElementById('rocket' + (i + 1));
-                outputRocket.style.color = '#d43648';
-                outputRocket.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot decelerate. Its current speed is 0.";
-                break;
-            }
+function decelerateRocket(code) {
+    var i;
+    for (i = 0; i < rockets.length; i++) {
+        if (rockets[i].code === code && rockets[i].currentSpeed() > 0) {
+            rockets[i].decelerate();
+            var outputRocket = document.getElementById('rocket' + (i + 1));
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = "Decelerating rocket " + rockets[i].code + " ...<br><br>";
+            break;
+        }
+        if (rockets[i].code === code && rockets[i].currentSpeed() === 0) {
+            var outputRocket = document.getElementById('rocket' + (i + 1));
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = "ALERT!<br>Rocket " + rockets[i].code + " cannot decelerate. Its current speed is 0.";
+            break;
         }
     }
 }
 // ---------------- GLOBAL FUNCTION PRINT ROCKET ---------------- //
-function printRocket(button) {
-    var btn = button.id;
-    if (btn === 'print1') {
-        print('32WESSDS');
-    }
-    if (btn === 'print2') {
-        print('LDSFJA32');
-    }
-    function print(code) {
-        for (var i = 0; i < rockets.length; i++) {
-            if (rockets[i].code === code) {
-                var outputRocket = document.getElementById('rocket' + (i + 1));
-                outputRocket.style.color = '#fac027';
-                outputRocket.innerHTML = "Rocket " + rockets[i].code + " has " + rockets[i].thrusters.length + " thrusters.<br>\n                                            Its current speed is " + rockets[i].currentSpeed() + "<br><br>";
-            }
+function printRocket(code) {
+    for (var i = 0; i < rockets.length; i++) {
+        if (rockets[i].code === code) {
+            var outputRocket = document.getElementById('rocket' + (i + 1));
+            outputRocket.style.color = '#fac027';
+            outputRocket.innerHTML = "Rocket " + rockets[i].code + " has " + rockets[i].thrusters.length + " thrusters.<br>\n                                        Its current speed is " + rockets[i].currentSpeed() + "<br><br>";
         }
     }
 }

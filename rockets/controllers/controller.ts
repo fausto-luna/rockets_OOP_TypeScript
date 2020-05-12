@@ -1,18 +1,15 @@
 let rockets:Rocket[] = new Array();
 // ---------------- GLOBAL FUNCTION CREATE ROCKET---------------- //
-function createRocket(button:HTMLButtonElement) {
-    let btn = button.id;
-    if (btn === 'create1'){
+function createRocket(code:string) {
+    if (code === '32WESSDS'){
         let outputRocket1 = document.getElementById('rocket1') as HTMLParagraphElement;
-        let code = '32WESSDS';
         let thruster1 = new Thruster(0, 10);
         let thruster2 = new Thruster(0, 30);
         let thruster3 = new Thruster(0, 80);
         let thrusters:Thruster[] = [thruster1, thruster2, thruster3];
         create(code, thrusters);
     }
-    if (btn === 'create2'){
-        let code = 'LDSFJA32';
+    if (code === 'LDSFJA32'){
         let thruster1 = new Thruster(0, 30);
         let thruster2 = new Thruster(0, 40);
         let thruster3 = new Thruster(0, 50);
@@ -48,79 +45,51 @@ function createRocket(button:HTMLButtonElement) {
     }
 }
 // ---------------- GLOBAL FUNCTION ACCELERATE ROCKET ---------------- //
-function accelerateRocket(button:HTMLButtonElement){
-    let btn = button.id;
-    if (btn === 'accelerate1'){
-        accelerate('32WESSDS');
-    }
-    if (btn === 'accelerate2'){
-        accelerate('LDSFJA32');
-    }
-    function accelerate(code:string){
-        var i:number;
-        for (i = 0; i < rockets.length; i++){
-            if (rockets[i].code === code && rockets[i].currentSpeed() < rockets[i].maxPower()){
-                rockets[i].accelerate();
-                let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
-                outputRocket.style.color = '#3ea648';
-                outputRocket.innerHTML = `Accelerating rocket ${rockets[i].code} ...<br><br>`;
-                break;
-            }
-            if (rockets[i].code === code && rockets[i].currentSpeed() === rockets[i].maxPower()){
-                let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement
-                outputRocket.style.color = '#d43648';
-                outputRocket.innerHTML = `ALERT!<br>Rocket ${rockets[i].code} cannot accelerate. It is at maximum power.`;
-                break;
-            }
+function accelerateRocket(code:string){
+    var i:number;
+    for (i = 0; i < rockets.length; i++){
+        if (rockets[i].code === code && rockets[i].currentSpeed() < rockets[i].maxPower()){
+            rockets[i].accelerate();
+            let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
+            outputRocket.style.color = '#3ea648';
+            outputRocket.innerHTML = `Accelerating rocket ${rockets[i].code} ...<br><br>`;
+            break;
         }
-    }
+        if (rockets[i].code === code && rockets[i].currentSpeed() === rockets[i].maxPower()){
+            let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = `ALERT!<br>Rocket ${rockets[i].code} cannot accelerate. It is at maximum power.`;
+            break;
+        }
+    } 
 }
 // ---------------- GLOBAL FUNCTION DECELLERATE ROCKET ---------------- //
-function decelerateRocket(button:HTMLButtonElement){
-    let btn = button.id;
-    if (btn === 'decelerate1'){
-        decelerate('32WESSDS');
-    }
-    if (btn === 'decelerate2'){
-        decelerate('LDSFJA32');
-    }
-    function decelerate(code:string){
-        let i:number;
-        for (i = 0; i < rockets.length; i++){
-            if (rockets[i].code === code && rockets[i].currentSpeed() > 0){
-                rockets[i].decelerate();
-                let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
-                outputRocket.style.color = '#d43648';
-                outputRocket.innerHTML = `Decelerating rocket ${rockets[i].code} ...<br><br>`;
-                break;
-            }
-            if (rockets[i].code === code && rockets[i].currentSpeed() === 0){
-                let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
-                outputRocket.style.color = '#d43648';
-                outputRocket.innerHTML = `ALERT!<br>Rocket ${rockets[i].code} cannot decelerate. Its current speed is 0.`;
-                break;
-            }
+function decelerateRocket(code:string){
+    let i:number;
+    for (i = 0; i < rockets.length; i++){
+        if (rockets[i].code === code && rockets[i].currentSpeed() > 0){
+            rockets[i].decelerate();
+            let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = `Decelerating rocket ${rockets[i].code} ...<br><br>`;
+            break;
+        }
+        if (rockets[i].code === code && rockets[i].currentSpeed() === 0){
+            let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
+            outputRocket.style.color = '#d43648';
+            outputRocket.innerHTML = `ALERT!<br>Rocket ${rockets[i].code} cannot decelerate. Its current speed is 0.`;
+            break;
         }
     }
-  
 }
 // ---------------- GLOBAL FUNCTION PRINT ROCKET ---------------- //
-function printRocket(button:HTMLButtonElement){
-    let btn = button.id;
-    if(btn === 'print1'){
-        print('32WESSDS');
-    }
-    if (btn === 'print2'){
-        print('LDSFJA32');
-    }
-    function print(code:string) {
-        for (var i = 0; i < rockets.length; i++) {
-            if (rockets[i].code === code) {
-                let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
-                outputRocket.style.color = '#fac027';
-                outputRocket.innerHTML = `Rocket ${rockets[i].code} has ${rockets[i].thrusters.length} thrusters.<br>
-                                            Its current speed is ${rockets[i].currentSpeed()}<br><br>`;
-            }
+function printRocket(code:string){
+    for (var i = 0; i < rockets.length; i++) {
+        if (rockets[i].code === code) {
+            let outputRocket = document.getElementById('rocket' + (i+1)) as HTMLParagraphElement;
+            outputRocket.style.color = '#fac027';
+            outputRocket.innerHTML = `Rocket ${rockets[i].code} has ${rockets[i].thrusters.length} thrusters.<br>
+                                        Its current speed is ${rockets[i].currentSpeed()}<br><br>`;
         }
     }
 }
